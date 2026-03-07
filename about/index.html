@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn about Big Boss Barber Botany — Auckland's trusted barbershop in Howick. Master barbers, 4.8-star rated, premium atmosphere.">
+    <title>About | Big Boss Barber Botany</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #111111;
+            --color-secondary: #2C3E50;
+            --color-accent: #D4AF37;
+            --color-text: #E0E0E0;
+            --color-heading: #FFFFFF;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Roboto', sans-serif
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        /* HEADER */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--color-bg);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15)
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+            white-space: nowrap
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            font-size: 0.95rem;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-accent);
+            border-bottom: 2px solid var(--color-accent)
+        }
+
+        .header-cta {
+            background: var(--color-accent);
+            color: var(--color-bg);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 10px 24px;
+            border: 1px solid var(--color-accent);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px
+        }
+
+        .header-cta:hover {
+            background: var(--color-heading);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .header-cta:active {
+            transform: translateY(0);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-accent);
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1
+        }
+
+        /* MOBILE NAV */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--color-bg);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease
+        }
+
+        .mobile-nav.open {
+            max-height: calc(100vh - 80px)
+        }
+
+        .mobile-nav a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 20px 16px;
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            color: var(--color-text);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease
+        }
+
+        .mobile-nav a:hover,
+        .mobile-nav a.active {
+            color: var(--color-accent)
+        }
+
+        .mobile-nav .mobile-cta {
+            display: block;
+            width: calc(100% - 32px);
+            margin: 24px 16px;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            text-align: center;
+            padding: 16px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 4px;
+            text-transform: uppercase
+        }
+
+        @media(max-width:768px) {
+
+            .nav-links,
+            .header-cta {
+                display: none !important
+            }
+
+            .hamburger {
+                display: block
+            }
+
+            .mobile-nav {
+                display: flex
+            }
+        }
+
+        /* PAGE HERO BANNER */
+        .page-hero {
+            padding: 80px 40px 60px;
+            text-align: center;
+            background: var(--color-bg)
+        }
+
+        .page-hero h1 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 16px
+        }
+
+        .gold-rule {
+            width: 60px;
+            height: 3px;
+            background: var(--color-accent);
+            margin: 0 auto
+        }
+
+        /* ABOUT CONTENT */
+        .about-story {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            text-align: center
+        }
+
+        .about-story p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text)
+        }
+
+        /* WHY CHOOSE US */
+        .why-section {
+            padding: 80px 40px
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .why-card {
+            background: var(--color-secondary);
+            padding: 36px 24px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            text-align: center
+        }
+
+        .why-icon {
+            font-size: 2.4rem;
+            color: var(--color-accent);
+            margin-bottom: 16px
+        }
+
+        .why-card h3 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: 1.3rem;
+            margin-bottom: 12px
+        }
+
+        .why-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--color-text)
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        /* IMAGE DIVIDER */
+        .image-divider {
+            position: relative;
+            max-width: 900px;
+            margin: 40px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .image-divider img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .image-divider::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 12%, transparent 88%, var(--color-bg) 100%);
+            pointer-events: none;
+        }
+
+        /* ═══════ SCROLL ANIMATIONS ═══════ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ═══════ IMAGE DIVIDER ═══════ */
+        .image-divider {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .image-divider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-divider::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 20%, transparent 80%, var(--color-bg) 100%);
+        }
+
+        @media(max-width:768px) {
+            .why-grid {
+                grid-template-columns: 1fr
+            }
+
+            .page-hero {
+                padding: 40px 20px 30px
+            }
+
+            .about-story {
+                padding: 30px 20px
+            }
+
+            .why-section {
+                padding: 40px 20px
+            }
+
+            .image-divider {
+                height: 220px;
+            }
+        }
+
+        /* FOOTER */
+        .site-footer {
+            background: var(--color-bg);
+            border-top: 3px solid var(--color-accent);
+            padding: 60px 40px 0
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 40px
+        }
+
+        .footer-brand .footer-logo {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px
+        }
+
+        .footer-brand .footer-tagline {
+            color: var(--color-text);
+            font-size: 0.9rem;
+            opacity: 0.7
+        }
+
+        .footer-nav ul {
+            list-style: none
+        }
+
+        .footer-nav ul li {
+            margin-bottom: 8px
+        }
+
+        .footer-nav a {
+            color: var(--color-text);
+            font-size: 0.95rem;
+            transition: color 0.3s ease
+        }
+
+        .footer-nav a:hover {
+            color: var(--color-accent)
+        }
+
+        .footer-contact p {
+            color: var(--color-text);
+            font-size: 0.9rem;
+            margin-bottom: 6px
+        }
+
+        .footer-contact a {
+            color: var(--color-accent);
+            transition: opacity 0.3s ease
+        }
+
+        .footer-contact a:hover {
+            opacity: 0.8
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--color-text);
+            font-size: 0.85rem;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        @media(max-width:768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center
+            }
+
+            .site-footer {
+                padding: 40px 20px 0
+            }
+
+            .site-header {
+                padding: 0 20px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="logo">Big Boss Barber Botany</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="bookings.html">Bookings</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="bookings.html" class="header-cta">Book Your Chair</a>
+        <button class="hamburger" id="hamburger" aria-label="Open navigation menu">&#9776;</button>
+    </header>
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="services.html">Services</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="contact.html">Contact</a>
+        <a href="bookings.html" class="mobile-cta">Book Your Chair</a>
+    </div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <h1>About Us</h1>
+        <div class="gold-rule"></div>
+    </section>
+
+    <!-- IMAGE DIVIDER — Chair -->
+    <div class="image-divider fade-in">
+        <img src="images/real_photo_1.jpg" alt="Authentic interior of Big Boss Barber Shop" loading="lazy">
+    </div>
+
+    <!-- STORY -->
+    <section class="about-story fade-in">
+        <p>Big Boss Barber Botany is a premier barber shop located in Howick, Auckland. We are dedicated to providing
+            exceptional grooming services, from classic precision cuts to hot towel shaves, ensuring every client walks
+            out looking and feeling their absolute best.</p>
+        <br>
+        <p>Since opening our doors, we&rsquo;ve built a loyal community of clients who trust our team for consistent,
+            high-quality results. Our barbers bring decades of combined experience and a genuine passion for their craft
+            &mdash; whether it&rsquo;s a sharp skin fade, a sculpted beard, or a relaxing hot towel finish.</p>
+    </section>
+
+    <!-- IMAGE DIVIDER — Scissors -->
+    <div class="image-divider fade-in">
+        <img src="images/scissors_premium.png" alt="Premium barber scissors on dark oak wood" loading="lazy">
+    </div>
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-section">
+        <h2 class="fade-in"
+            style="font-family:var(--font-heading);color:var(--color-heading);font-size:clamp(1.8rem,3vw,2.6rem);text-align:center;margin-bottom:16px;">
+            Why Choose Us</h2>
+        <div class="gold-rule fade-in" style="margin-bottom:48px;"></div>
+        <div class="why-grid">
+            <div class="why-card scale-in" style="transition-delay:0s;">
+                <div class="why-icon">&#9986;</div>
+                <h3>Master Barbers</h3>
+                <p>Decades of combined experience in precision cuts and traditional wet shaving techniques. Every cut is
+                    tailored to your face, your style, and your vibe.</p>
+            </div>
+            <div class="why-card scale-in" style="transition-delay:0.15s;">
+                <div class="why-icon">&#9733;</div>
+                <h3>Top Rated</h3>
+                <p>4.8 stars from our loyal Auckland community. Quality you can trust, every single visit. Our reviews
+                    speak for themselves &mdash; five stars across the board.</p>
+            </div>
+            <div class="why-card scale-in" style="transition-delay:0.3s;">
+                <div class="why-icon">&#9830;</div>
+                <h3>Premium Atmosphere</h3>
+                <p>A space designed for relaxation and refinement. Step in, sit back, and leave looking sharp. The Big
+                    Boss experience is more than a haircut &mdash; it&rsquo;s a ritual.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <p class="footer-logo">Big Boss Barber Botany</p>
+                <p class="footer-tagline">Masterful Cuts. Classic Detail.</p>
+            </div>
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="bookings.html">Bookings</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <p><a href="tel:0275747041">027 574 7041</a></p>
+                <p>6/309 Botany Road, Howick,<br>Auckland 2013, New Zealand</p>
+                <p style="margin-top:12px;">Mon &ndash; Sun: 9:00 AM &ndash; 6:00 PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Big Boss Barber Botany. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // Mobile nav
+        (function () { var b = document.getElementById('hamburger'), n = document.getElementById('mobile-nav'), o = false; b.addEventListener('click', function () { o = !o; if (o) { n.classList.add('open'); b.innerHTML = '&#10005;' } else { n.classList.remove('open'); b.innerHTML = '&#9776;' } }); var l = n.querySelectorAll('a'); for (var i = 0; i < l.length; i++) { l[i].addEventListener('click', function () { n.classList.remove('open'); b.innerHTML = '&#9776;'; o = false }) } })();
+
+        // Scroll animations
+        (function () {
+            var els = document.querySelectorAll('.fade-in, .scale-in');
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            els.forEach(function (el) { observer.observe(el); });
+        })();
+    </script>
+</body>
+
+</html>

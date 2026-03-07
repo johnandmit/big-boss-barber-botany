@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Big Boss Barber Botany — Auckland's premier barbershop in Howick. Masterful cuts, hot towel shaves, and classic grooming. Rated 4.8 stars.">
+    <title>Home | Big Boss Barber Botany</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ═══════════════ DESIGN TOKENS ═══════════════ */
+        :root {
+            --color-bg: #111111;
+            --color-secondary: #2C3E50;
+            --color-accent: #D4AF37;
+            --color-text: #E0E0E0;
+            --color-heading: #FFFFFF;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ═══════════════ SCROLL ANIMATIONS ═══════════════ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ═══════════════ HEADER ═══════════════ */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--color-bg);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            font-size: 0.95rem;
+            font-weight: 400;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-accent);
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        .header-cta {
+            background: var(--color-accent);
+            color: var(--color-bg);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 10px 24px;
+            border: 1px solid var(--color-accent);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .header-cta:hover {
+            background: var(--color-heading);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .header-cta:active {
+            transform: translateY(0);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-accent);
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* ═══════════════ MOBILE NAV ═══════════════ */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--color-bg);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease;
+        }
+
+        .mobile-nav.open {
+            max-height: calc(100vh - 80px);
+        }
+
+        .mobile-nav a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 20px 16px;
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            color: var(--color-text);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav a:hover,
+        .mobile-nav a.active {
+            color: var(--color-accent);
+        }
+
+        .mobile-nav .mobile-cta {
+            display: block;
+            width: calc(100% - 32px);
+            margin: 24px 16px;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            text-align: center;
+            padding: 16px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .header-cta {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .mobile-nav {
+                display: flex;
+            }
+        }
+
+        /* ═══════════════ HERO ═══════════════ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--color-bg);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://places.googleapis.com/v1/places/ChIJbcvjLQBLDW0Rr6RwMML7JPo/photos/ATCDNfWJTUUxzRcRAh6APYt4nUsolQ1HTmq350XoI08TqfWWE5WlKwlZD0z1h0gA4YNtAhVSiyo0W1-zYMZzR59eut2PX9xe9h6A2ZU9SwLrKHuLBYfgsJPDNzz38V9CIiFNTf1F29iQxFVeRPXU6lYyeUsTh3tqmA8E_-JY3FsQVIZJRLkxiZW57W6V7NkiwhVbvXjKy3s9Z99MQ98HRE1n3OcTwS2VplhO08t32J3894DsK8figyrwh0bCix4e_Eg-zToTOYgKegpevHJ_L7wcMT1zj5KsqTK0Ed1kDD23-yWNdg/media?maxHeightPx=1600&maxWidthPx=1600&key=AIzaSyB2cBQhTIJDTxo57UCESyw4J--r7Tttf4o');
+            background-size: cover;
+            background-position: center;
+            background-color: var(--color-bg);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(17, 17, 17, 0.65);
+        }
+
+        /* SVG fallback pattern */
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' fill='none' stroke='%23D4AF37' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
+            animation: heroFadeIn 1.2s ease forwards;
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text);
+            margin-bottom: 36px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-accent {
+            display: inline-block;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border: 1px solid var(--color-accent);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-accent:hover {
+            background: var(--color-heading);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: none;
+            stroke: var(--color-accent);
+            stroke-width: 2;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+
+        /* ═══════════════ SECTIONS ═══════════════ */
+        .section {
+            padding: 80px 40px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-text);
+            opacity: 0.7;
+            font-size: 1rem;
+            margin-bottom: 48px;
+        }
+
+        .gold-rule {
+            width: 60px;
+            height: 3px;
+            background: var(--color-accent);
+            margin: 16px auto 48px;
+        }
+
+        /* ═══════════════ IMAGE DIVIDER ═══════════════ */
+        .image-divider {
+            position: relative;
+            max-width: 900px;
+            margin: 40px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .image-divider img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .image-divider::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 12%, transparent 88%, var(--color-bg) 100%);
+            pointer-events: none;
+        }
+
+        /* ═══════════════ REVIEW CAROUSEL ═══════════════ */
+        .review-carousel-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-carousel {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .review-slide {
+            min-width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .review-stars {
+            color: var(--color-accent);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+
+        .review-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 24px;
+            color: var(--color-text);
+            font-style: italic;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: var(--color-accent);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 22px;
+            padding: 10px 0 20px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--color-accent);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px var(--color-accent);
+        }
+
+        /* Fading dots utility */
+        .carousel-dot.near-end {
+            opacity: 0.5;
+            transform: scale(0.8);
+        }
+
+        .carousel-dot.far-end {
+            opacity: 0.2;
+            transform: scale(0.6);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--color-accent);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-nav:hover {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .carousel-prev {
+            left: 10px;
+            z-index: 10;
+        }
+
+        .carousel-next {
+            right: 10px;
+            z-index: 10;
+        }
+
+        /* ═══════════════ SOCIAL PROOF ═══════════════ */
+        .social-proof-section {
+            background: var(--color-secondary);
+            padding: 80px 40px;
+            border-top: 1px solid var(--color-accent);
+            border-bottom: 1px solid var(--color-accent);
+            overflow: hidden;
+        }
+
+        .social-proof-label {
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.6s ease;
+        }
+
+        .social-proof-label.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .social-proof-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .rating-left {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rating-number-container {
+            font-family: var(--font-heading);
+            font-size: 96px;
+            color: var(--color-accent);
+            line-height: 1;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .star-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .star-svg {
+            width: 32px;
+            height: 32px;
+            transform: scale(0);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .star-svg.visible {
+            transform: scale(1);
+        }
+
+        .rating-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--color-text);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.6s ease;
+        }
+
+        .rating-label.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .google-g {
+            width: 18px;
+            height: 18px;
+        }
+
+        .bars-right {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bar-row {
+            display: grid;
+            grid-template-columns: 35px 1fr 40px;
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.6s ease;
+        }
+
+        .bar-row.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .bar-label {
+            font-size: 13px;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .bar-track {
+            height: 8px;
+            background: #111111;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            border-radius: 4px;
+            transition: width 1s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .bar-percent {
+            font-size: 13px;
+            color: var(--color-text);
+            text-align: right;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .social-proof-section {
+                padding: 40px 20px;
+            }
+
+            .social-proof-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .rating-number-container {
+                font-size: 72px;
+            }
+        }
+
+        /* ═══════════════ FEATURES STRIP ═══════════════ */
+        .features-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 48px 24px;
+            border-right: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .feature-item:last-child {
+            border-right: none;
+        }
+
+        .feature-icon {
+            font-size: 2.8rem;
+            color: var(--color-accent);
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .feature-item h3 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--color-text);
+            opacity: 0.7;
+        }
+
+        /* ═══════════════ MAP ═══════════════ */
+        .map-section {
+            padding: 80px 40px;
+        }
+
+        .map-section iframe {
+            border-radius: 4px;
+            display: block;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        /* ═══════════════ FOOTER ═══════════════ */
+        .site-footer {
+            background: var(--color-bg);
+            border-top: 3px solid var(--color-accent);
+            padding: 60px 40px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+        }
+
+        .footer-brand .footer-logo {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand .footer-tagline {
+            color: var(--color-text);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .footer-nav ul {
+            list-style: none;
+        }
+
+        .footer-nav ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-nav a {
+            color: var(--color-text);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-contact p {
+            color: var(--color-text);
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        .footer-contact a {
+            color: var(--color-accent);
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--color-text);
+            font-size: 0.85rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section {
+                padding: 40px 20px;
+            }
+
+            .map-section {
+                padding: 40px 20px;
+            }
+
+            .site-header {
+                padding: 0 20px;
+            }
+
+            .site-footer {
+                padding: 40px 20px 0;
+            }
+
+            .features-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            }
+
+            .image-divider {
+                height: 250px;
+            }
+
+            .carousel-nav {
+                display: none;
+            }
+
+            .review-slide {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header class="site-header">
+        <a href="index.html" class="logo">Big Boss Barber Botany</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="/bookings.html">Bookings</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="bookings.html" class="header-cta">Book Your Chair</a>
+        <button class="hamburger" id="hamburger" aria-label="Open navigation menu">&#9776;</button>
+    </header>
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="contact.html">Contact</a>
+        <a href="bookings.html" class="mobile-cta">Book Your Chair</a>
+    </div>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Masterful Cuts. Classic Detail.</h1>
+            <p>Experience Auckland's premier grooming destination, where traditional barbering meets modern style.</p>
+            <a href="bookings.html" class="btn-accent">Book Your Chair</a>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- ═══════════════ DYNAMIC SOCIAL PROOF ═══════════════ -->
+    <section class="social-proof-section">
+        <div class="social-proof-label" id="sp-header">TRUSTED BY OUR COMMUNITY</div>
+        <div class="social-proof-grid">
+            <div class="rating-left">
+                <div class="rating-number-container" id="rating-number">0.0</div>
+                <div class="star-row" id="star-row">
+                    <!-- Star 1 -->
+                    <svg class="star-svg" viewBox="0 0 24 24">
+                        <polygon
+                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                            fill="#D4AF37" stroke="#D4AF37" stroke-width="1" />
+                    </svg>
+                    <!-- Star 2 -->
+                    <svg class="star-svg" viewBox="0 0 24 24">
+                        <polygon
+                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                            fill="#D4AF37" stroke="#D4AF37" stroke-width="1" />
+                    </svg>
+                    <!-- Star 3 -->
+                    <svg class="star-svg" viewBox="0 0 24 24">
+                        <polygon
+                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                            fill="#D4AF37" stroke="#D4AF37" stroke-width="1" />
+                    </svg>
+                    <!-- Star 4 -->
+                    <svg class="star-svg" viewBox="0 0 24 24">
+                        <polygon
+                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                            fill="#D4AF37" stroke="#D4AF37" stroke-width="1" />
+                    </svg>
+                    <!-- Star 5 (80% fill) -->
+                    <svg class="star-svg" viewBox="0 0 24 24">
+                        <defs>
+                            <linearGradient id="partial-star-80" x1="0" x2="1" y1="0" y2="0">
+                                <stop offset="80%" stop-color="#D4AF37" />
+                                <stop offset="80%" stop-color="transparent" />
+                            </linearGradient>
+                        </defs>
+                        <polygon
+                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                            fill="url(#partial-star-80)" stroke="#D4AF37" stroke-width="1" />
+                    </svg>
+                </div>
+                <div class="rating-label" id="sp-label">
+                    <svg class="google-g" viewBox="0 0 24 24">
+                        <path
+                            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                            fill="#4285F4" />
+                        <path
+                            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                            fill="#34A853" />
+                        <path
+                            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+                            fill="#FBBC05" />
+                        <path
+                            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                            fill="#EA4335" />
+                    </svg>
+                    Based on 80 Google reviews
+                </div>
+            </div>
+
+            <div class="bars-right">
+                <div class="section-subtitle" style="text-align:left; margin-bottom:15px; font-size:13px;">From our most
+                    recent reviews</div>
+                <!-- 5 Star -->
+                <div class="bar-row" data-delay="0">
+                    <span class="bar-label">5 ★</span>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="background:#D4AF37" data-width="93"></div>
+                    </div>
+                    <span class="bar-percent">93%</span>
+                </div>
+                <!-- 4 Star -->
+                <div class="bar-row" data-delay="0.1">
+                    <span class="bar-label">4 ★</span>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="background:#C9A227" data-width="1"></div>
+                    </div>
+                    <span class="bar-percent">1%</span>
+                </div>
+                <!-- 3 Star -->
+                <div class="bar-row" data-delay="0.2">
+                    <span class="bar-label">3 ★</span>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="background:#6B6B6B" data-width="1.25"></div>
+                    </div>
+                    <span class="bar-percent">1%</span>
+                </div>
+                <!-- 2 Star -->
+                <div class="bar-row" data-delay="0.3">
+                    <span class="bar-label">2 ★</span>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="background:#4A4A4A" data-width="1"></div>
+                    </div>
+                    <span class="bar-percent">1%</span>
+                </div>
+                <!-- 1 Star -->
+                <div class="bar-row" data-delay="0.4">
+                    <span class="bar-label">1 ★</span>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="background:#333333" data-width="3.75"></div>
+                    </div>
+                    <span class="bar-percent">4%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ FEATURES STRIP ═══════════════ -->
+    <section class="section" style="padding-bottom:0;">
+        <div class="features-strip">
+            <div class="feature-item fade-in" style="transition-delay: 0s;">
+                <div class="feature-icon">&#9986;</div>
+                <h3>Master Barbers</h3>
+                <p>Decades of combined experience</p>
+            </div>
+            <div class="feature-item fade-in" style="transition-delay: 0.15s;">
+                <div class="feature-icon">&#9733;</div>
+                <h3>4.8 Star Rated</h3>
+                <p>Trusted by the Howick community</p>
+            </div>
+            <div class="feature-item fade-in" style="transition-delay: 0.3s;">
+                <div class="feature-icon">&#9830;</div>
+                <h3>Open 7 Days</h3>
+                <p>9 AM &ndash; 6 PM, every day</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ IMAGE DIVIDER — Tools ═══════════════ -->
+    <div class="image-divider fade-in">
+        <img src="images/tools.png" alt="Premium barbershop tools arranged on a dark surface" loading="lazy">
+    </div>
+
+    <!-- ═══════════════ REVIEWS ═══════════════ -->
+    <section class="section" id="reviews">
+        <h2 class="section-title fade-in">What Our Clients Say</h2>
+        <div class="gold-rule fade-in"></div>
+
+        <div class="review-carousel-wrapper scale-in">
+            <button class="carousel-nav carousel-prev" id="carousel-prev" aria-label="Previous review">&#10094;</button>
+            <button class="carousel-nav carousel-next" id="carousel-next" aria-label="Next review">&#10095;</button>
+
+            <div class="review-carousel" id="review-carousel">
+                <!-- Review 1 -->
+                <div class="review-slide">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">&ldquo;The guys at Big Boss barber were the best barbers I think we have ever
+                        been to, they gave our sons amazing haircuts, super friendly service. And as a whole the vibe is
+                        so &lsquo;boss&rsquo;. Thanks so much guys, you have a lifelong customers in us!&rdquo;</p>
+                    <p class="review-author">Misha Peters</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="review-slide">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">&ldquo;Such an amazing experience. Son is 2 and first proper cut. The barber
+                        was amazing and took time to entertain him while he got his hair cut. Was worried he would not
+                        sit still but he did, even with clippers. Highly recommend if you have a young one.&rdquo;</p>
+                    <p class="review-author">David Conochie</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="review-slide">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">&ldquo;We walked in without a booking but left feeling so happy and
+                        impressed. It was our 1 year old son's first proper haircut and we were touched at how much
+                        attention and care the two guys gave him. Thank you for making us very happy parents!&rdquo;</p>
+                    <p class="review-author">Kimberley Brown</p>
+                </div>
+                <!-- Review 4 -->
+                <div class="review-slide">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">&ldquo;Easily the best barber experience I&rsquo;ve ever had. From the moment
+                        you walk into Big Boss Barbers, you know you&rsquo;re in the hands of professionals who
+                        genuinely take pride in their craft. Massive respect to the crew!&rdquo;</p>
+                    <p class="review-author">calvin Malot</p>
+                </div>
+                <!-- Review 5 -->
+                <div class="review-slide">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">&ldquo;Best barber for anyone looking for fancy cuts and good quality. Very
+                        professional barbers, beautiful spot on the main strip. They have been cutting my hair since
+                        2014. Would highly recommend them.&rdquo;</p>
+                    <p class="review-author">Allan Croucher</p>
+                </div>
+                <!-- Review 6 -->
+                <div class="review-slide">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">&ldquo;THE BEST CUT AND EXPERIENCE I&rsquo;VE EVER RECEIVED. Saif is a
+                        talented barber who has over 20 years of experience. One of the most genuine interactions
+                        i&rsquo;ve ever had. I left with full confidence. 10/10!&rdquo;</p>
+                    <p class="review-author">Bertrand Cosgrove</p>
+                </div>
+                <!-- Review 7 -->
+                <div class="review-slide">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">&ldquo;Awesome haircutting services, love how they consider the hairstyle
+                        fits the customers and provide their opinions on how different cutting suits you.&rdquo;</p>
+                    <p class="review-author">henry tan</p>
+                </div>
+                <!-- Review 8 -->
+                <div class="review-slide">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">&ldquo;Walked in for the first time yesterday, great atmosphere and
+                        welcoming, I had a hair cut and beard trim, my wife said it looked the best she has seen for
+                        awhile, thanks guys!&rdquo;</p>
+                    <p class="review-author">David Robertson</p>
+                </div>
+                <!-- Review 9 -->
+                <div class="review-slide">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">&ldquo;Saif is one of, if not the best barber in Auckland. I've been visiting
+                        him for over 10 years now. Every time is a pleasure. Great craftsman, with a beautiful new
+                        shop.&rdquo;</p>
+                    <p class="review-author">Ben Lawn</p>
+                </div>
+                <!-- Review 10 -->
+                <div class="review-slide">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">&ldquo;Fantastic hair cut and a very comfortable time in the barber chair.
+                        Great conversation and he knew exactly how to cut my hair. Botany region is lucky to have a
+                        talent such as yourself!&rdquo;</p>
+                    <p class="review-author">Mustafa Tahir</p>
+                </div>
+            </div>
+
+            <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ IMAGE DIVIDER — Storefront ═══════════════ -->
+    <div class="image-divider fade-in">
+        <img src="images/real_storefront_hq.png" alt="Authentic Big Boss Barber storefront in Botany" loading="lazy">
+    </div>
+
+    <!-- ═══════════════ CTA BAND ═══════════════ -->
+    <section class="section fade-in" style="text-align:center;">
+        <h2 class="section-title">Ready to Look Your Best?</h2>
+        <div class="gold-rule"></div>
+        <p style="max-width:600px;margin:0 auto 32px;font-size:1.1rem;color:var(--color-text);opacity:0.8;">
+            Walk in or book online. Our chairs are waiting.
+        </p>
+        <a href="bookings.html" class="btn-accent">Book Your Chair</a>
+    </section>
+
+    <!-- ═══════════════ MAP ═══════════════ -->
+    <section class="map-section">
+        <h2 class="section-title fade-in">Find Us</h2>
+        <div class="gold-rule fade-in"></div>
+        <div class="scale-in">
+            <iframe
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB2cBQhTIJDTxo57UCESyw4J--r7Tttf4o&q=place_id:ChIJbcvjLQBLDW0Rr6RwMML7JPo&zoom=17"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <p class="footer-logo">Big Boss Barber Botany</p>
+                <p class="footer-tagline">Masterful Cuts. Classic Detail.</p>
+            </div>
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="bookings.html">Bookings</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <p><a href="tel:0275747041">027 574 7041</a></p>
+                <p>6/309 Botany Road, Howick,<br>Auckland 2013, New Zealand</p>
+                <p style="margin-top:12px;">Mon &ndash; Sun: 9:00 AM &ndash; 6:00 PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Big Boss Barber Botany. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- ═══════════════ SCRIPTS ═══════════════ -->
+    <script>
+        // Mobile nav
+        (function () {
+            var btn = document.getElementById('hamburger');
+            var nav = document.getElementById('mobile-nav');
+            var open = false;
+            btn.addEventListener('click', function () {
+                open = !open;
+                if (open) { nav.classList.add('open'); btn.innerHTML = '&#10005;'; }
+                else { nav.classList.remove('open'); btn.innerHTML = '&#9776;'; }
+            });
+            var links = nav.querySelectorAll('a');
+            for (var i = 0; i < links.length; i++) {
+                links[i].addEventListener('click', function () {
+                    nav.classList.remove('open');
+                    btn.innerHTML = '&#9776;';
+                    open = false;
+                });
+            }
+        })();
+
+        // Scroll-triggered animations
+        (function () {
+            var els = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            els.forEach(function (el) { observer.observe(el); });
+        })();
+
+        // Review Carousel
+        (function () {
+            var carousel = document.getElementById('review-carousel');
+            var slides = carousel.querySelectorAll('.review-slide');
+            var dotsContainer = document.getElementById('carousel-dots');
+            var prevBtn = document.getElementById('carousel-prev');
+            var nextBtn = document.getElementById('carousel-next');
+            var current = 0;
+            var total = slides.length;
+            var interval;
+
+            // Create dots
+            dotsContainer.innerHTML = '';
+            for (var i = 0; i < total; i++) {
+                var dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('data-index', i);
+                dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+                dotsContainer.appendChild(dot);
+            }
+
+            var dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+            function goTo(index) {
+                if (index >= total) index = 0;
+                if (index < 0) index = total - 1;
+
+                current = index;
+                carousel.style.transform = 'translateX(-' + (current * 100) + '%)';
+
+                dots.forEach(function (d, idx) {
+                    d.classList.remove('active', 'near-end', 'far-end');
+                    var distance = Math.abs(idx - current);
+
+                    if (idx === current) {
+                        d.classList.add('active');
+                    } else if (distance === 1) {
+                        // Keep normal
+                    } else if (distance === 2) {
+                        d.classList.add('near-end');
+                    } else if (distance >= 3) {
+                        d.classList.add('far-end');
+                    }
+                });
+            }
+
+            nextBtn.addEventListener('click', function () { goTo(current + 1); resetTimer(); });
+            prevBtn.addEventListener('click', function () { goTo(current - 1); resetTimer(); });
+
+            dots.forEach(function (dot) {
+                dot.addEventListener('click', function () {
+                    goTo(parseInt(this.getAttribute('data-index')));
+                    resetTimer();
+                });
+            });
+
+            function startTimer() { interval = setInterval(function () { goTo(current + 1); }, 6000); }
+            function resetTimer() { clearInterval(interval); startTimer(); }
+            startTimer();
+
+            var startX = 0;
+            carousel.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+            carousel.addEventListener('touchend', function (e) {
+                var diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) goTo(current + 1);
+                    else goTo(current - 1);
+                    resetTimer();
+                }
+            }, { passive: true });
+        })();
+
+        // Social Proof Animations
+        (function () {
+            var section = document.querySelector('.social-proof-section');
+            var number = document.getElementById('rating-number');
+            var header = document.getElementById('sp-header');
+            var label = document.getElementById('sp-label');
+            var stars = document.querySelectorAll('.star-svg');
+            var rows = document.querySelectorAll('.bar-row');
+            var fills = document.querySelectorAll('.bar-fill');
+
+            function animateRating(target, duration, el) {
+                var start = performance.now();
+                function update(now) {
+                    var progress = Math.min((now - start) / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = (target * eased).toFixed(1);
+                    if (progress < 1) requestAnimationFrame(update);
+                }
+                requestAnimationFrame(update);
+            }
+
+            var obs = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting) {
+                    header.classList.add('visible');
+
+                    setTimeout(function () {
+                        animateRating(4.8, 1200, number);
+                    }, 200);
+
+                    setTimeout(function () {
+                        stars.forEach(function (s, i) {
+                            setTimeout(function () { s.classList.add('visible'); }, i * 100);
+                        });
+                    }, 1200);
+
+                    setTimeout(function () {
+                        label.classList.add('visible');
+                    }, 400);
+
+                    rows.forEach(function (r, i) {
+                        setTimeout(function () {
+                            r.classList.add('visible');
+                            var fill = r.querySelector('.bar-fill');
+                            fill.style.width = fill.dataset.width + '%';
+                        }, 600 + (i * 100));
+                    });
+
+                    obs.unobserve(section);
+                }
+            }, { threshold: 0.2 });
+            obs.observe(section);
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Book your appointment at Big Boss Barber Botany — online booking coming soon. Contact us directly to reserve your chair.">
+    <title>Bookings | Big Boss Barber Botany</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #111111;
+            --color-secondary: #2C3E50;
+            --color-accent: #D4AF37;
+            --color-text: #E0E0E0;
+            --color-heading: #FFFFFF;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Roboto', sans-serif
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--color-bg);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15)
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+            white-space: nowrap
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            font-size: 0.95rem;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-accent);
+            border-bottom: 2px solid var(--color-accent)
+        }
+
+        .header-cta {
+            background: var(--color-accent);
+            color: var(--color-bg);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 10px 24px;
+            border: 1px solid var(--color-accent);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px
+        }
+
+        .header-cta:hover {
+            background: var(--color-heading);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .header-cta:active {
+            transform: translateY(0);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-accent);
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--color-bg);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease
+        }
+
+        .mobile-nav.open {
+            max-height: calc(100vh - 80px)
+        }
+
+        .mobile-nav a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 20px 16px;
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            color: var(--color-text);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease
+        }
+
+        .mobile-nav a:hover,
+        .mobile-nav a.active {
+            color: var(--color-accent)
+        }
+
+        .mobile-nav .mobile-cta {
+            display: block;
+            width: calc(100% - 32px);
+            margin: 24px 16px;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            text-align: center;
+            padding: 16px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 4px;
+            text-transform: uppercase
+        }
+
+        @media(max-width:768px) {
+
+            .nav-links,
+            .header-cta {
+                display: none !important
+            }
+
+            .hamburger {
+                display: block
+            }
+
+            .mobile-nav {
+                display: flex
+            }
+        }
+
+        .page-hero {
+            padding: 80px 40px 60px;
+            text-align: center;
+            background: var(--color-bg)
+        }
+
+        .page-hero h1 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 16px
+        }
+
+        .gold-rule {
+            width: 60px;
+            height: 3px;
+            background: var(--color-accent);
+            margin: 0 auto
+        }
+
+        /* BOOKING COMING SOON */
+        .booking-notice {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 40px;
+            text-align: center;
+            min-height: 40vh
+        }
+
+        .booking-icon {
+            font-size: 4rem;
+            color: var(--color-accent);
+            margin-bottom: 24px;
+            line-height: 1
+        }
+
+        .booking-notice h2 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            margin-bottom: 16px
+        }
+
+        .booking-notice p {
+            max-width: 500px;
+            font-size: 1.05rem;
+            color: var(--color-text);
+            margin-bottom: 32px;
+            line-height: 1.7
+        }
+
+        .btn-accent {
+            display: inline-block;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border: 1px solid var(--color-accent);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px
+        }
+
+        .btn-accent:hover {
+            background: var(--color-heading);
+            color: var(--color-accent);
+            border-color: var(--color-accent)
+        }
+
+        /* WHAT TO EXPECT */
+        .expect-section {
+            padding: 60px 40px 80px;
+            max-width: 700px;
+            margin: 0 auto
+        }
+
+        .expect-section h3 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 36px
+        }
+
+        .steps {
+            list-style: none;
+            counter-reset: step
+        }
+
+        .steps li {
+            counter-increment: step;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+            font-size: 1rem;
+            line-height: 1.6
+        }
+
+        .steps li::before {
+            content: counter(step);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            font-weight: 700;
+            border-radius: 50%;
+            font-size: 0.9rem
+        }
+
+        @media(max-width:768px) {
+            .booking-notice {
+                padding: 40px 20px
+            }
+
+            .expect-section {
+                padding: 30px 20px 40px
+            }
+
+            .site-header {
+                padding: 0 20px
+            }
+
+            .btn-accent {
+                width: 100%;
+                text-align: center
+            }
+        }
+
+        .site-footer {
+            background: var(--color-bg);
+            border-top: 3px solid var(--color-accent);
+            padding: 60px 40px 0
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 40px
+        }
+
+        .footer-brand .footer-logo {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px
+        }
+
+        .footer-brand .footer-tagline {
+            color: var(--color-text);
+            font-size: 0.9rem;
+            opacity: 0.7
+        }
+
+        .footer-nav ul {
+            list-style: none
+        }
+
+        .footer-nav ul li {
+            margin-bottom: 8px
+        }
+
+        .footer-nav a {
+            color: var(--color-text);
+            font-size: 0.95rem;
+            transition: color 0.3s ease
+        }
+
+        .footer-nav a:hover {
+            color: var(--color-accent)
+        }
+
+        .footer-contact p {
+            color: var(--color-text);
+            font-size: 0.9rem;
+            margin-bottom: 6px
+        }
+
+        .footer-contact a {
+            color: var(--color-accent);
+            transition: opacity 0.3s ease
+        }
+
+        .footer-contact a:hover {
+            opacity: 0.8
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--color-text);
+            font-size: 0.85rem;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        @media(max-width:768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center
+            }
+
+            .site-footer {
+                padding: 40px 20px 0
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <a href="index.html" class="logo">Big Boss Barber Botany</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="bookings.html" class="active">Bookings</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="bookings.html" class="header-cta">Book Your Chair</a>
+        <button class="hamburger" id="hamburger" aria-label="Open navigation menu">&#9776;</button>
+    </header>
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="bookings.html" class="active">Bookings</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html#contact-form" class="mobile-cta">Contact Us to Book</a>
+    </div>
+
+    <section class="page-hero">
+        <h1>Book Your Chair</h1>
+        <div class="gold-rule"></div>
+    </section>
+
+    <!-- CALENDLY EMBED -->
+    <section class="booking-container" style="padding: 40px 0; background: var(--color-bg);">
+        <div class="calendly-inline-widget"
+            data-url="https://calendly.com/johnandmit/new-meeting?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=d4af37"
+            style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <p class="footer-logo">Big Boss Barber Botany</p>
+                <p class="footer-tagline">Masterful Cuts. Classic Detail.</p>
+            </div>
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="bookings.html">Bookings</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <p><a href="tel:0275747041">027 574 7041</a></p>
+                <p>6/309 Botany Road, Howick,<br>Auckland 2013, New Zealand</p>
+                <p style="margin-top:12px;">Mon &ndash; Sun: 9:00 AM &ndash; 6:00 PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Big Boss Barber Botany. All rights reserved.</div>
+    </footer>
+
+    <script>
+        (function () { var b = document.getElementById('hamburger'), n = document.getElementById('mobile-nav'), o = false; b.addEventListener('click', function () { o = !o; if (o) { n.classList.add('open'); b.innerHTML = '&#10005;' } else { n.classList.remove('open'); b.innerHTML = '&#9776;' } }); var l = n.querySelectorAll('a'); for (var i = 0; i < l.length; i++) { l[i].addEventListener('click', function () { n.classList.remove('open'); b.innerHTML = '&#9776;'; o = false }) } })();
+    </script>
+</body>
+
+</html>

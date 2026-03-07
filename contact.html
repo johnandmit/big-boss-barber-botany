@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Contact Big Boss Barber Botany in Howick, Auckland. Call 027 574 7041, visit us at 6/309 Botany Road, or send us a message. Open 7 days.">
+    <title>Contact | Big Boss Barber Botany</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #111111;
+            --color-secondary: #2C3E50;
+            --color-accent: #D4AF37;
+            --color-text: #E0E0E0;
+            --color-heading: #FFFFFF;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Roboto', sans-serif
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--color-bg);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15)
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+            white-space: nowrap
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            font-size: 0.95rem;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-accent);
+            border-bottom: 2px solid var(--color-accent)
+        }
+
+        .header-cta {
+            background: var(--color-accent);
+            color: var(--color-bg);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 10px 24px;
+            border: 1px solid var(--color-accent);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px
+        }
+
+        .header-cta:hover {
+            background: var(--color-heading);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .header-cta:active {
+            transform: translateY(0);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-accent);
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--color-bg);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease
+        }
+
+        .mobile-nav.open {
+            max-height: calc(100vh - 80px)
+        }
+
+        .mobile-nav a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 20px 16px;
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            color: var(--color-text);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease
+        }
+
+        .mobile-nav a:hover,
+        .mobile-nav a.active {
+            color: var(--color-accent)
+        }
+
+        .mobile-nav .mobile-cta {
+            display: block;
+            width: calc(100% - 32px);
+            margin: 24px 16px;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            text-align: center;
+            padding: 16px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 4px;
+            text-transform: uppercase
+        }
+
+        @media(max-width:768px) {
+
+            .nav-links,
+            .header-cta {
+                display: none !important
+            }
+
+            .hamburger {
+                display: block
+            }
+
+            .mobile-nav {
+                display: flex
+            }
+        }
+
+        .page-hero {
+            padding: 80px 40px 60px;
+            text-align: center;
+            background: var(--color-bg)
+        }
+
+        .page-hero h1 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 16px
+        }
+
+        .gold-rule {
+            width: 60px;
+            height: 3px;
+            background: var(--color-accent);
+            margin: 0 auto
+        }
+
+        /* CONTACT LAYOUT */
+        .contact-section {
+            padding: 60px 40px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem
+        }
+
+        .contact-details h3 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: 1.4rem;
+            margin-bottom: 24px
+        }
+
+        .contact-item {
+            margin-bottom: 20px
+        }
+
+        .contact-label {
+            font-weight: 700;
+            color: var(--color-accent);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px
+        }
+
+        .contact-value {
+            font-size: 1rem;
+            color: var(--color-text)
+        }
+
+        .contact-value a {
+            color: var(--color-accent);
+            transition: opacity 0.3s ease
+        }
+
+        .contact-value a:hover {
+            opacity: 0.8
+        }
+
+        .hours-list {
+            list-style: none
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem
+        }
+
+        .hours-list .day {
+            color: var(--color-text)
+        }
+
+        .hours-list .time {
+            color: var(--color-accent);
+            font-weight: 500
+        }
+
+        /* CONTACT FORM */
+        .contact-form-wrapper h3 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-size: 1.4rem;
+            margin-bottom: 24px
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--color-secondary);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 4px;
+            color: var(--color-text);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical
+        }
+
+        .btn-send {
+            background: var(--color-accent);
+            color: var(--color-bg);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border: 1px solid var(--color-accent);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            align-self: flex-start;
+        }
+
+        .btn-send:hover {
+            background: var(--color-heading);
+            color: var(--color-accent);
+            border-color: var(--color-accent)
+        }
+
+        .map-section {
+            padding: 0 40px 80px;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .map-section iframe {
+            border-radius: 4px;
+            display: block
+        }
+
+        /* ═══════ SCROLL ANIMATIONS ═══════ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @media(max-width:768px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+                padding: 30px 20px 40px
+            }
+
+            .page-hero {
+                padding: 40px 20px 30px
+            }
+
+            .map-section {
+                padding: 0 20px 40px
+            }
+
+            .btn-send {
+                width: 100%;
+                text-align: center
+            }
+
+            .site-header {
+                padding: 0 20px
+            }
+        }
+
+        .site-footer {
+            background: var(--color-bg);
+            border-top: 3px solid var(--color-accent);
+            padding: 60px 40px 0
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 40px
+        }
+
+        .footer-brand .footer-logo {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px
+        }
+
+        .footer-brand .footer-tagline {
+            color: var(--color-text);
+            font-size: 0.9rem;
+            opacity: 0.7
+        }
+
+        .footer-nav ul {
+            list-style: none
+        }
+
+        .footer-nav ul li {
+            margin-bottom: 8px
+        }
+
+        .footer-nav a {
+            color: var(--color-text);
+            font-size: 0.95rem;
+            transition: color 0.3s ease
+        }
+
+        .footer-nav a:hover {
+            color: var(--color-accent)
+        }
+
+        .footer-contact p {
+            color: var(--color-text);
+            font-size: 0.9rem;
+            margin-bottom: 6px
+        }
+
+        .footer-contact a {
+            color: var(--color-accent);
+            transition: opacity 0.3s ease
+        }
+
+        .footer-contact a:hover {
+            opacity: 0.8
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--color-text);
+            font-size: 0.85rem;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        @media(max-width:768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center
+            }
+
+            .site-footer {
+                padding: 40px 20px 0
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <a href="index.html" class="logo">Big Boss Barber Botany</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="bookings.html">Bookings</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="bookings.html" class="header-cta">Book Your Chair</a>
+        <button class="hamburger" id="hamburger" aria-label="Open navigation menu">&#9776;</button>
+    </header>
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="contact.html#contact-form" class="mobile-cta">Send Us a Message</a>
+    </div>
+
+    <section class="page-hero">
+        <h1>Get In Touch</h1>
+        <div class="gold-rule"></div>
+    </section>
+
+    <section class="contact-section">
+        <!-- LEFT — CONTACT DETAILS -->
+        <div class="contact-details fade-in">
+            <h3>Contact Details</h3>
+
+            <div class="contact-item">
+                <p class="contact-label">Phone</p>
+                <p class="contact-value"><a href="tel:0275747041">027 574 7041</a></p>
+            </div>
+
+            <div class="contact-item">
+                <p class="contact-label">Address</p>
+                <p class="contact-value">6/309 Botany Road, Howick,<br>Auckland 2013, New Zealand</p>
+            </div>
+
+            <div class="contact-item">
+                <p class="contact-label">Opening Hours</p>
+                <ul class="hours-list">
+                    <li><span class="day">Monday</span><span class="time">9:00 AM &ndash; 6:00 PM</span></li>
+                    <li><span class="day">Tuesday</span><span class="time">9:00 AM &ndash; 6:00 PM</span></li>
+                    <li><span class="day">Wednesday</span><span class="time">9:00 AM &ndash; 6:00 PM</span></li>
+                    <li><span class="day">Thursday</span><span class="time">9:00 AM &ndash; 6:00 PM</span></li>
+                    <li><span class="day">Friday</span><span class="time">9:00 AM &ndash; 6:00 PM</span></li>
+                    <li><span class="day">Saturday</span><span class="time">9:00 AM &ndash; 6:00 PM</span></li>
+                    <li><span class="day">Sunday</span><span class="time">9:00 AM &ndash; 6:00 PM</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- RIGHT — CONTACT FORM -->
+        <div class="contact-form-wrapper fade-in" id="contact-form">
+            <h3>Send Us a Message</h3>
+            <div id="form-response"
+                style="display:none; padding: 15px; border-radius: 4px; margin-bottom: 20px; font-weight: 500;"></div>
+            <form class="contact-form" id="webhook-form">
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="full_name" required placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone (Optional)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="021 000 0000">
+                </div>
+                <div class="form-group">
+                    <label for="service-needed">Service Needed</label>
+                    <input type="text" id="service-needed" name="service_needed"
+                        placeholder="e.g. Precision Haircut, Skin Fade">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required
+                        placeholder="Tell us what you need, or request a specific time..."></textarea>
+                </div>
+                <button type="submit" class="btn-send" id="submit-btn">Send Message</button>
+            </form>
+        </div>
+
+        <script>
+            document.getElementById('webhook-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const btn = document.getElementById('submit-btn');
+                const responseDiv = document.getElementById('form-response');
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData.entries());
+
+                btn.disabled = true;
+                btn.innerText = 'Sending...';
+
+                fetch('https://n8n.arfquant.com/webhook/EmailContact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            responseDiv.style.display = 'block';
+                            responseDiv.style.backgroundColor = 'rgba(212, 175, 55, 0.2)';
+                            responseDiv.style.border = '1px solid var(--color-accent)';
+                            responseDiv.style.color = 'var(--color-accent)';
+                            responseDiv.innerText = 'Message sent successfully! We\'ll be in touch soon.';
+                            this.reset();
+                        } else {
+                            throw new Error('Network response was not ok.');
+                        }
+                    })
+                    .catch(error => {
+                        responseDiv.style.display = 'block';
+                        responseDiv.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+                        responseDiv.style.border = '1px solid #ff4444';
+                        responseDiv.style.color = '#ff4444';
+                        responseDiv.innerText = 'Oops! Something went wrong. Please try again or call us directly.';
+                    })
+                    .finally(() => {
+                        btn.disabled = false;
+                        btn.innerText = 'Send Message';
+                    });
+            });
+        </script>
+    </section>
+
+    <!-- MAP -->
+    <section class="map-section scale-in">
+        <iframe
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB2cBQhTIJDTxo57UCESyw4J--r7Tttf4o&q=place_id:ChIJbcvjLQBLDW0Rr6RwMML7JPo&zoom=17"
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <p class="footer-logo">Big Boss Barber Botany</p>
+                <p class="footer-tagline">Masterful Cuts. Classic Detail.</p>
+            </div>
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="bookings.html">Bookings</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <p><a href="tel:0275747041">027 574 7041</a></p>
+                <p>6/309 Botany Road, Howick,<br>Auckland 2013, New Zealand</p>
+                <p style="margin-top:12px;">Mon &ndash; Sun: 9:00 AM &ndash; 6:00 PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Big Boss Barber Botany. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // Mobile nav
+        (function () { var b = document.getElementById('hamburger'), n = document.getElementById('mobile-nav'), o = false; b.addEventListener('click', function () { o = !o; if (o) { n.classList.add('open'); b.innerHTML = '&#10005;' } else { n.classList.remove('open'); b.innerHTML = '&#9776;' } }); var l = n.querySelectorAll('a'); for (var i = 0; i < l.length; i++) { l[i].addEventListener('click', function () { n.classList.remove('open'); b.innerHTML = '&#9776;'; o = false }) } })();
+
+        // Scroll animations
+        (function () {
+            var els = document.querySelectorAll('.fade-in, .scale-in');
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            els.forEach(function (el) { observer.observe(el); });
+        })();
+    </script>
+</body>
+
+</html>
