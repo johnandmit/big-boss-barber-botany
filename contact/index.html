@@ -598,6 +598,7 @@
                 const responseDiv = document.getElementById('form-response');
                 const formData = new FormData(this);
                 const data = Object.fromEntries(formData.entries());
+                data.business = 'Big Boss Barber Botany';
 
                 btn.disabled = true;
                 btn.innerText = 'Sending...';
